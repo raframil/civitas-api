@@ -6,6 +6,7 @@ const ReportSchema = new mongoose.Schema({
     required: true
   },
   location: {
+    address: { type: String, required: true },
     latitude: { type: String, required: true },
     longitude: { type: String, required: true }
   },
