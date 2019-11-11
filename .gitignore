@@ -4,7 +4,7 @@
 /node_modules
 
 # uploaded files
-/uploads
+/src/uploads/
 
 # production
 /build
