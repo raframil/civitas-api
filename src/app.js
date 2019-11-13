@@ -5,6 +5,9 @@ const cors = require('cors');
 const app = express();
 const db = require('./database/index');
 
+// Make uploads public to web
+app.use('/uploads', express.static('uploads'));
+
 // Enable files upload
 app.use(
   fileUpload({
