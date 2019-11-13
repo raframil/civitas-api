@@ -8,18 +8,19 @@ router.post('/', async (req, res) => {
     if (!req.files) {
       return res.status(400).json({ message: 'You must upload a photo' });
     } else {
+      let location = JSON.parse(req.body.location);
+
       let reportPhoto = req.files.photo;
-      let jsonObj = JSON.parse(req.body.json);
       let randomName = uuidv4();
       let ext = reportPhoto.mimetype.split('/');
 
       reportPhoto.mv('./uploads/' + randomName + '.' + ext[1]);
 
       const report = new Report({
-        description: jsonObj.description,
-        location: jsonObj.location,
+        description: req.body.description,
+        location: location,
         photo: 'uploads/' + randomName + '.' + ext[1],
-        reportType: jsonObj.reportType
+        reportType: req.body.reportType
       });
       try {
         const newReport = await report.save();
