@@ -8,7 +8,11 @@ router.post('/', async (req, res) => {
     if (!req.files) {
       return res.status(400).json({ message: 'You must upload a photo' });
     } else {
-      let location = JSON.parse(req.body.location);
+      var localObject = {
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        address: req.body.address
+      };
 
       let reportPhoto = req.files.photo;
       let randomName = uuidv4();
@@ -18,7 +22,7 @@ router.post('/', async (req, res) => {
 
       const report = new Report({
         description: req.body.description,
-        location: location,
+        location: localObject,
         photo: 'uploads/' + randomName + '.' + ext[1],
         reportType: req.body.reportType
       });
