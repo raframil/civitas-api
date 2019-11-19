@@ -8,7 +8,7 @@ const fs = require('fs');
 router.post('/', async (req, res) => {
   try {
     if (!req.files) {
-      return res.status(400).json({ message: 'You must upload a photo' });
+      return res.status(400).json({ message: 'Você precisa enviar uma foto' });
     } else {
       var localObject = {
         latitude: req.body.latitude,
@@ -71,9 +71,9 @@ router.delete('/:reportId', async (req, res) => {
         if (err) return res.status(400).json({ error: err });
       });
 
-      return res.status(200).json({ message: 'Report deleted successfully', report: report });
+      return res.status(200).json({ message: 'Ocorrência deletada com sucesso', report: report });
     } else {
-      return res.status(404).json({ message: 'Report not found' });
+      return res.status(404).json({ message: 'Ocorrência não encontrada' });
     }
   } catch (err) {
     return res.status(400).json({ error: err });
